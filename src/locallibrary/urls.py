@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from catalog.views import index
+from catalog.views import index, BookListView, BookDetailView
 
 urlpatterns = [
     path('catalog/', index, name='index'),
     path('admin/', admin.site.urls),
     path('index/', index, name='index'),
-    # path('catalog/', include('catalog.urls')),
+    path('catalog/books/', BookListView.as_view(), name='books'),
+    path('catalog/book/<int:pk>', BookDetailView.as_view(), name='book-detail'),
 ]
